@@ -1,22 +1,33 @@
 # Api 2 Symfony
 
-Provide a way to convert a given specification into Symfony controller instances.
+PHP library to automatically generate Symfony2 controllers from RAML specs.
+
+We only support the following specification formats now:
+
+*  RAML
+
+But we'd like to also support:
+
+* Blueprint
+* Swagger
+
+> Fell free to submit your PRs !
 
 ## Installation
 
-#### Via composer
+Using composer:
 
 `composer require creads/api2symfony 1.1.0`
 
-## Specifications supported:
-
-* RAML
-
-
 ## Use case
 
-    $converter = new Creads\Api2Symfony\RamlConverter(new Raml\Parser);
-    $controllers = $converter->convert('path/to/raml')
+```
+use Creads\Api2Symfony\RamlConverter;
+use Raml\Parser;
+
+$converter = new RamlConverter(new Parser());
+$controllers = $converter->convert('path/to/spec.raml');
+```
 
 ## Tests
 
@@ -28,8 +39,13 @@ Provide a way to convert a given specification into Symfony controller instances
 
 ## Contributing
 
-Feel free to contribute on github by submitting any issue or question
+Feel free to contribute on github by submitting any issue or question on [tracker](https://github.com/creads/api2symfony/issues).
 
 ## License
 
-Distributed under MIT license
+Released under MIT license.
+
+Please reade the LICENSE file.
+
+
+
