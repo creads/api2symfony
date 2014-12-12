@@ -1,0 +1,9 @@
+#%RAML 0.8
+title: uri parameters
+
+/posts:
+  /{slug}:
+    /comments/{page}:
+      /{id}:
+        get:
+          description: Get a specific coment

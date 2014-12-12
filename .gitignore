@@ -1,0 +1,5 @@
+/vendor/
+/Tests/generated
+.DS_Store
+composer.lock
+composer.phar

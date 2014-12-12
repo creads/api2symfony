@@ -1,0 +1,10 @@
+#%RAML 0.8
+title: action route
+
+/posts:
+  get:
+    description: Get a list of post
+  /{id}:
+    displayName: Post
+    get:
+      description: Get a specific post

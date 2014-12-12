@@ -1,0 +1,24 @@
+#%RAML 0.8
+title: mock response
+
+/posts:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "total_count": 3,
+                "offset": 0,
+                "limit": 10,
+                "items":
+                [
+                  {
+                    "title" : "Post 1"
+                  },
+                  {
+                    "title" : "Post 2"
+                  }
+                ]
+              }

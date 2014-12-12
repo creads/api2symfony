@@ -1,0 +1,57 @@
+#%RAML 0.8
+title: subresource
+
+/posts:
+  displayName: Posts
+  description: Collection of available post resource
+  get:
+    description: Get a list of post
+  post:
+    description: Create a post
+  /{id}:
+    description: Specific post
+    displayName: Post
+    get:
+      description: Get a post
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "title": "Post d'aujourd'hui"
+                }
+    delete:
+      description: Delete a post
+    put:
+      description: Update a post
+    /comments:
+      description: Collection of available post's comments
+      displayName: Comments
+      get:
+        description: Get list of comment for given post
+      post:
+        description: Post a new comment
+      /{id}:
+        description: Specific comment
+        displayName: Comment
+        delete:
+          description: Delete a specific comment
+
+
+/users:
+  displayName: Users
+  description: Collection of available user resource
+  get:
+    description: Get a list of user
+  post:
+    description: Register new user
+  /{id}:
+    displayName: User
+    description: Specific user
+    get:
+      description: Get a single user
+    delete:
+      description: Unregister a user
+    put:
+      description: Update user information
