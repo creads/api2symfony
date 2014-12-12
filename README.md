@@ -1,4 +1,4 @@
-# Api 2 Symfony
+# Api2Symfony
 
 PHP library to automatically generate Symfony2 controllers from RAML specs.
 
@@ -11,13 +11,13 @@ But we'd like to also support:
 * Blueprint
 * Swagger
 
-> Fell free to submit your PRs !
+> Feel free to submit your PRs !
 
 ## Installation
 
 Using composer:
 
-`composer require creads/api2symfony 1.1.0`
+`composer require creads/api2symfony 1.0.*@dev`
 
 ## Use case
 
@@ -29,7 +29,7 @@ $converter = new RamlConverter(new Parser());
 $controllers = $converter->convert('path/to/spec.raml');
 ```
 
-## Tests
+## Run tests
 
 `php vendor/bin/phpunit`
 
@@ -45,7 +45,4 @@ Feel free to contribute on github by submitting any issue or question on [tracke
 
 Released under MIT license.
 
-Please reade the LICENSE file.
-
-
-
+Please read the LICENSE file.
