@@ -2,7 +2,6 @@
     "name": "creads/api2symfony",
     "description": "PHP library which provide generation of Symfony mockup controllers based on spec",
     "type": "library",
-    "version": "1.0.0",
     "keywords": ["php", "raml", "symfony", "api", "converter"],
     "license": "MIT",
     "homepage": "http://creads.fr",
@@ -15,7 +14,7 @@
         }
     ],
     "require": {
-        "alecsammon/php-raml-parser": "dev-master"
+        "alecsammon/php-raml-parser": "*@dev"
     },
     "require-dev": {
         "phpunit/phpunit": "4.*"
