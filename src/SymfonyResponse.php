@@ -35,7 +35,7 @@ class SymfonyResponse
      * @param string    $content        HTTP response content
      * @param string    $contentType    HTTP response content type
      */
-    public function __construct($code, $content = '', $contentType)
+    public function __construct($code, $content, $contentType)
     {
         $this->code         = $code;
         $this->content      = $content;
