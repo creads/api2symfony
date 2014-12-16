@@ -36,13 +36,13 @@ class RamlConverter implements ConverterInterface
     }
 
     /**
-     * Recursive method which converts raml resource into action list
+     * Recursive method which converts raml resource into action and add it to controller
      *
+     * @param  SymfonyController $controller Controller where actions will be added
      * @param  Resource $resource
      * @param  string   $chainName
-     * @return array
      */
-    protected function convertResourceToActions(Resource $resource, $chainName = '')
+    protected function addActions(SymfonyController &$controller, Resource $resource, $chainName = '')
     {
         $actions = array();
 
@@ -66,14 +66,12 @@ class RamlConverter implements ConverterInterface
                 }
             }
 
-            $actions[] = $action;
+            $controller->addAction($action);
         }
 
         foreach ($resource->getResources() as $subresource) {
-            $actions = array_merge($actions, $this->convertResourceToActions($subresource, $chainName));
+            $this->addActions($controller, $subresource, $chainName);
         }
-
-        return $actions;
     }
 
     /**
@@ -107,7 +105,7 @@ class RamlConverter implements ConverterInterface
             foreach ($def->getResources() as $resource) {
 
                 $controller = new SymfonyController(ucfirst($resource->getDisplayName()) . 'Controller', $namespace, $resource->getDescription());
-                $controller->setActions($this->convertResourceToActions($resource));
+                $this->addActions($controller, $resource);
                 $controllers[] = $controller;
             }
         }

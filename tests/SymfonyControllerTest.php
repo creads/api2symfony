@@ -23,6 +23,17 @@ class SymfonyControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('', $controller->getDescription());
     }
 
+    public function testAddActionAndGetActions()
+    {
+        $controller = new SymfonyController('my controller');
+        $route = $this->getMock('Creads\Api2Symfony\SymfonyRoute', array(), array('/route_path', 'route_name'));
+        $action = $this->getMock('Creads\Api2Symfony\SymfonyAction', array(), array('myname', $route, 'get', 'my description'));
+
+        $controller->addAction($action);
+
+        $this->assertEquals(array($action), $controller->getActions());
+    }
+
     /**
      * @expectedException           Exception
      * @expectedExceptionMessage    You must provide a controller's name
