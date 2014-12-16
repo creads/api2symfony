@@ -12,13 +12,13 @@
 
     <testsuites>
         <testsuite name="PHP Raml Parser">
-            <directory>./test</directory>
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory suffix=".php">./src</directory>
+            <directory suffix=".php">./tests</directory>
         </whitelist>
     </filter>
 

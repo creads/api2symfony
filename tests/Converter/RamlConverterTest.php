@@ -1,9 +1,8 @@
 <?php
 
-namespace Creads\Api2Symfony\Tests\Raml;
+namespace Creads\Tests\Api2Symfony\Converter;
 
 use Raml\Parser;
-
 use Creads\Api2Symfony\Converter\RamlConverter;
 
 class RamlConverterTest extends \PHPUnit_Framework_TestCase
@@ -17,7 +16,7 @@ class RamlConverterTest extends \PHPUnit_Framework_TestCase
 
     public function parseRaml($raml)
     {
-        return self::$converter->convert(__DIR__ . '/fixtures/' . $raml, 'Foo\\Bar');
+        return self::$converter->convert(__DIR__ . '/../fixtures/' . $raml, 'Foo\\Bar');
     }
 
     public function testNoResource()
