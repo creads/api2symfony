@@ -25,6 +25,13 @@ class SymfonyActionTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($route, $action->getRoute());
         $this->assertEquals('get', $action->getMethod());
         $this->assertEquals('my description', $action->getDescription());
+    }
+
+    public function testConstructDefaultValue()
+    {
+        $route = $this->getMockedRoute();
+        $action = new SymfonyAction('myname', $route, 'get');
+        $this->assertEquals('', $action->getDescription());
         $this->assertEquals(array(), $action->getParameters());
     }
 
