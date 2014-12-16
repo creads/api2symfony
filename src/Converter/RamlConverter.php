@@ -91,11 +91,11 @@ class RamlConverter implements ConverterInterface
     }
 
     /**
-     * @see ConverterInterface::convert()
+     * {@inheritDoc}
      */
-    public function convert($spec, $namespace)
+    public function convert($filename, $namespace)
     {
-        $def = $this->parser->parse($spec);
+        $def = $this->parser->parse($filename);
 
         $namespace = $this->buildNamespace($def, $namespace);
 
