@@ -30,9 +30,9 @@ class RamlConverter implements ConverterInterface
      *
      * @param Parser $parser
      */
-    public function __construct(Parser $parser)
+    public function __construct()
     {
-        $this->parser = $parser;
+        $this->parser = new Parser();
     }
 
     /**

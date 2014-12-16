@@ -23,7 +23,7 @@ Using composer:
 
 ```
 //prepare RAML converter
-$converter = new Creads\Api2Symfony\Converter\RamlConverter(new Raml\Parser());
+$converter = new Creads\Api2Symfony\Converter\RamlConverter();
 
 //prepare dumper
 $dumper = new Creads\Api2Symfony\Dumper\SymfonyDumper();
