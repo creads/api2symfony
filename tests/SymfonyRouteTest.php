@@ -1,5 +1,7 @@
 <?php
 
+namespace Creads\Tests\Api2Symfony;
+
 use Creads\Api2Symfony\SymfonyRoute;
 
 class SymfonyRouteTest extends \PHPUnit_Framework_TestCase

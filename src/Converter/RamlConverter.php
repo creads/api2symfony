@@ -6,7 +6,6 @@ use Raml\ApiDefinition;
 use Raml\Parser;
 use Raml\Resource;
 
-use Creads\Api2Symfony\Api2SymfonyConverterInterface;
 use Creads\Api2Symfony\SymfonyController;
 use Creads\Api2Symfony\SymfonyAction;
 use Creads\Api2Symfony\SymfonyRoute;
@@ -17,7 +16,7 @@ use Creads\Api2Symfony\SymfonyResponse;
  *
  * @author Quentin <q.pautrat@creads.org>
  */
-class RamlConverter implements Api2SymfonyConverterInterface
+class RamlConverter implements ConverterInterface
 {
     /**
      * Parser
@@ -94,7 +93,7 @@ class RamlConverter implements Api2SymfonyConverterInterface
     }
 
     /**
-     * @see Api2SymfonyConverterInterface::convert()
+     * @see ConverterInterface::convert()
      */
     public function convert($spec, $namespace)
     {

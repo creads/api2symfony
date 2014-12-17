@@ -31,7 +31,10 @@ $controllers = $converter->convert('path/to/spec.raml');
 
 ## Run tests
 
-`php vendor/bin/phpunit`
+```
+composer install --dev
+php vendor/bin/phpunit
+```
 
 ## Contributors
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Creads\Api2Symfony;
+namespace Creads\Api2Symfony\Converter;
 
 /**
  * @author Quentin <q.pautrat@creads.org>
  */
-interface Api2SymfonyConverterInterface
+interface ConverterInterface
 {
     /**
      * Convert given spec into Symfony mockup controller classes
