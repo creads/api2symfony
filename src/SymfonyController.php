@@ -86,19 +86,19 @@ class SymfonyController
     }
 
     /**
-     * Sets actions
+     * Add an action to controller. If an action with the same name alreaday exists, it will erase it.
      *
-     * @param array $actions
+     * @param SymfonyAction $action An array of SymfonyAction
      */
-    public function setActions(array $actions)
+    public function addAction(SymfonyAction $action)
     {
-        $this->actions = $actions;
+        $this->actions[] = $action;
     }
 
     /**
      * Gets actions
      *
-     * @return array
+     * @return array An array of SymfonyAction
      */
     public function getActions()
     {
