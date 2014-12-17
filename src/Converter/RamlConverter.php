@@ -42,7 +42,7 @@ class RamlConverter implements ConverterInterface
      * @param  Resource $resource
      * @param  string   $chainName
      */
-    protected function addActions(SymfonyController &$controller, Resource $resource, $chainName = '')
+    protected function addActions(SymfonyController $controller, Resource $resource, $chainName = '')
     {
         $actions = array();
 
