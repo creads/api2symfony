@@ -11,7 +11,7 @@
     syntaxCheck="true">
 
     <testsuites>
-        <testsuite name="PHP Raml Parser">
+        <testsuite name="Api2Symfony test suite">
             <directory>./tests</directory>
         </testsuite>
     </testsuites>

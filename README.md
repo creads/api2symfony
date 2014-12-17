@@ -22,11 +22,19 @@ Using composer:
 ## Use case
 
 ```
-use Creads\Api2Symfony\RamlConverter;
-use Raml\Parser;
+//prepare RAML converter
+$converter = new Creads\Api2Symfony\Converter\RamlConverter();
 
-$converter = new RamlConverter(new Parser());
+//prepare dumper
+$dumper = new Creads\Api2Symfony\Dumper\SymfonyDumper();
+
+//get controller models from specification
 $controllers = $converter->convert('path/to/spec.raml');
+
+//dump each controller into current directory
+foreach($controllers as $controller) {
+  $dumper->dump(controller);
+}
 ```
 
 ## Run tests

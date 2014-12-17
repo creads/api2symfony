@@ -30,9 +30,9 @@ class RamlConverter implements ConverterInterface
      *
      * @param Parser $parser
      */
-    public function __construct(Parser $parser)
+    public function __construct()
     {
-        $this->parser = $parser;
+        $this->parser = new Parser();
     }
 
     /**
@@ -91,11 +91,11 @@ class RamlConverter implements ConverterInterface
     }
 
     /**
-     * @see ConverterInterface::convert()
+     * {@inheritDoc}
      */
-    public function convert($spec, $namespace)
+    public function convert($filename, $namespace)
     {
-        $def = $this->parser->parse($spec);
+        $def = $this->parser->parse($filename);
 
         $namespace = $this->buildNamespace($def, $namespace);
 

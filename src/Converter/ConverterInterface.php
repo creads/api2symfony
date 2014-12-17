@@ -8,11 +8,12 @@ namespace Creads\Api2Symfony\Converter;
 interface ConverterInterface
 {
     /**
-     * Convert given spec into Symfony mockup controller classes
+     * Convert a given specification
      *
-     * @param  mixed    $spec       Given spec
-     * @param  string   $namespace  Namespace
-     * @return array                List of generated mockup controllers
+     * @param  mixed    $filepath   Filepath to specification
+     * @param  string   $namespace  Destination namespace
+     *
+     * @return array                A list of SymfonyController
      */
-    public function convert($spec, $namespace);
+    public function convert($filepath, $namespace);
 }
