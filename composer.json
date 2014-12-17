@@ -24,6 +24,11 @@
             "Creads\\Api2Symfony\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Creads\\Tests\\": "tests/"
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
