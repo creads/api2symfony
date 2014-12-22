@@ -1,6 +1,6 @@
 {
     "name": "creads/api2symfony",
-    "description": "PHP library which provide generation of Symfony mockup controllers based on spec",
+    "description": "PHP library to automatically generate Symfony2 controllers from API specifications (RAML, Blueprint, Swagger...)",
     "type": "library",
     "keywords": ["php", "raml", "symfony", "api", "converter"],
     "license": "MIT",
@@ -10,6 +10,12 @@
             "name": "Quentin",
             "email": "q.pautrat@creads.org",
             "homepage": "https://github.com/qpautrat",
+            "role": "Developer"
+        },
+        {
+            "name": "Damien Pitard",
+            "email": "damien.pitard@gmail.com",
+            "homepage": "https://github.com/pitpit",
             "role": "Developer"
         }
     ],
