@@ -54,9 +54,3 @@ php vendor/bin/phpunit
 ## Contributing
 
 Feel free to contribute on github by submitting any issue or question on [tracker](https://github.com/creads/api2symfony/issues).
-
-## License
-
-Released under MIT license.
-
-Please read the LICENSE file.
