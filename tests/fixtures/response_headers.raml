@@ -1,0 +1,15 @@
+#%RAML 0.8
+title: response headers
+
+/posts:
+  get:
+    responses:
+      200:
+        headers:
+          Foo:
+            example: Bar
+          Bar:
+            required: true
+            example: Foo
+          FooBar:
+            required: true
