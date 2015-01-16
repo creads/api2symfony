@@ -29,17 +29,25 @@ class SymfonyResponse
     private $contentType;
 
     /**
+     * Headers
+     *
+     * @var array
+     */
+    private $headers;
+
+    /**
      * Constructor
      *
      * @param integer   $code           HTTP Code
      * @param string    $content        HTTP response content
      * @param string    $contentType    HTTP response content type
      */
-    public function __construct($code, $content, $contentType)
+    public function __construct($code, $content, $contentType, array $headers = array())
     {
         $this->code         = $code;
         $this->content      = $content;
         $this->contentType  = $contentType;
+        $this->headers      = $headers;
     }
 
     /**
@@ -70,5 +78,15 @@ class SymfonyResponse
     public function getContentType()
     {
         return $this->contentType;
+    }
+
+    /**
+     * Get headers
+     *
+     * @return array
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
     }
 }

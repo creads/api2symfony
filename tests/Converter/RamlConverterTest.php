@@ -109,4 +109,16 @@ class RamlConverterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(200, $response->getCode());
         $this->assertEquals('application/json', $response->getContentType());
     }
+
+    public function testResponseHeaders()
+    {
+        $headers = $this->parseRaml('response_headers.raml')[0]->getActions()[0]->getResponse()->getHeaders();
+        $this->assertArrayNotHasKey('Foo', $headers);
+        $this->assertArrayHasKey('Bar', $headers);
+        $this->assertArrayHasKey('FooBar', $headers);
+        $this->assertEquals('Foo', $headers['Bar']);
+        $this->assertEmpty($headers['FooBar']);
+
+        (new \Creads\Api2Symfony\Dumper\SymfonyDumper())->dump($this->parseRaml('response_headers.raml')[0], __DIR__);
+    }
 }

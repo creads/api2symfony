@@ -1,1 +1,15 @@
-return new Response('{{ response.content|raw }}', {{ response.code }}, array('Content-Type' => '{{ response.contentType }}'));
+return new Response(
+            '{{ response.content|raw }}',
+            {{ response.code }},
+            array(
+                {% include 'key_value.php.twig' with { 'key' : 'Content-Type', 'value' : response.contentType } %}
+
+            ),
+            array(
+                {% for key, value in response.headers %}
+                {%- include 'key_value.php.twig' with { 'key' : key, 'value' : value } %}{% if loop.last == false %},{% endif %}
+
+                {% endfor %}
+
+            )
+        );
