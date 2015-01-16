@@ -60,8 +60,19 @@ class RamlConverter implements ConverterInterface
 
             if ($method->getResponses()) {
                 foreach ($method->getResponses() as $code => $response) {
+                    $headers = array();
+                    foreach ($response->getHeaders() as $key => $value) {
+                        if (isset($value['required']) && $value['required']) {
+                            $headers[$key] = isset($value['example']) ? $value['example'] : '';
+                        }
+                    }
                     if (200 === $code) {
-                        $action->setResponse(new SymfonyResponse($code, str_replace('\'', '\\\'', $response->getExampleByType('application/json')), 'application/json'));
+                        $action->setResponse(new SymfonyResponse(
+                            $code,
+                            str_replace('\'', '\\\'', $response->getExampleByType('application/json')),
+                            'application/json',
+                            $headers
+                        ));
                     }
                 }
             }
