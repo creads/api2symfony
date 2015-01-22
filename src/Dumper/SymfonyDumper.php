@@ -61,16 +61,13 @@ class SymfonyDumper implements DumperInterface
      */
     public function dump(SymfonyController $controller, $destination = '.')
     {
-
         $template = $this->twig->loadTemplate('controller.php.twig');
 
         if (!$template) {
             throw new \Exception('Unable to find template');
         }
 
-        $output = $template->render(array(
-            'controller' => $controller
-        ));
+        $output = $template->render(array('controller' => $controller));
 
         if (!$this->filesystem->exists($destination)) {
             throw new \InvalidArgumentException(sprintf('Folder %s does not exist', $destination));

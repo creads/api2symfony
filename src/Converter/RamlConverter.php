@@ -10,6 +10,7 @@ use Creads\Api2Symfony\SymfonyController;
 use Creads\Api2Symfony\SymfonyAction;
 use Creads\Api2Symfony\SymfonyRoute;
 use Creads\Api2Symfony\SymfonyResponse;
+use Creads\Api2Symfony\SymfonyResponseContent;
 
 /**
  * Provide a way to convert a RAML specification to a list of SymfonyController
@@ -26,13 +27,26 @@ class RamlConverter implements ConverterInterface
     private $parser;
 
     /**
+     * Config
+     *
+     * @var array
+     */
+    protected $config;
+
+    /**
      * Constructor
      *
      * @param Parser $parser
      */
-    public function __construct()
+    public function __construct(array $config = array())
     {
         $this->parser = new Parser();
+
+        $this->config = array(
+            'allowed_response_types' => array('application/json')
+        );
+
+        $this->config = array_merge($this->config, $config);
     }
 
     /**
@@ -66,14 +80,13 @@ class RamlConverter implements ConverterInterface
                             $headers[$key] = isset($value['example']) ? $value['example'] : '';
                         }
                     }
-                    if (200 === $code) {
-                        $action->setResponse(new SymfonyResponse(
-                            $code,
-                            str_replace('\'', '\\\'', $response->getExampleByType('application/json')),
-                            'application/json',
-                            $headers
-                        ));
+                    $_response = new SymfonyResponse($code, $headers);
+                    foreach ($this->config['allowed_response_types'] as $allowedResponsetype) {
+                        if (null !== $example = $response->getExampleByType($allowedResponsetype)) {
+                            $_response->addContent(new SymfonyResponseContent($allowedResponsetype, str_replace(array("\r\n", "\n", "\r", "\t", "  "), '', $example)));
+                        }
                     }
+                    $action->addResponse($_response);
                 }
             }
 

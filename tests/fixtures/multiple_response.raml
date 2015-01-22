@@ -1,0 +1,49 @@
+#%RAML 0.8
+title: multiple response
+
+/post:
+  /{id}:
+    displayName: Post
+    put:
+      responses:
+        204:
+          description: Post modified
+        400:
+          description: Data missing or invalid
+          body:
+            application/json:
+              example: |
+                {
+                  "error": {
+                    "code": 400,
+                    "message" : "Data missing or invalid"
+                  }
+                }
+        403:
+          description: Your are not authorized to update this resource
+          body:
+            application/json:
+              example: |
+                {
+                  "error": {
+                    "code": 403,
+                    "message" : "Your are not authorized to update this resource"
+                  }
+                }
+            application/xml:
+              example: |
+                <error>
+                    <code>403</code>
+                    <message>Your are not authorized to update this resource</message>
+                </error>
+        404:
+          description: Could not find this resource
+          body:
+            application/json:
+              example: |
+                {
+                  "error": {
+                    "code": 404,
+                    "message" : "Could not this resource"
+                  }
+                }

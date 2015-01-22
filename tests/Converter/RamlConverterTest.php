@@ -11,7 +11,7 @@ class RamlConverterTest extends \PHPUnit_Framework_TestCase
 
     public static function setUpBeforeClass()
     {
-        self::$converter = new RamlConverter(new Parser);
+        self::$converter = new RamlConverter();
     }
 
     public function parseRaml($raml)
@@ -105,20 +105,34 @@ class RamlConverterTest extends \PHPUnit_Framework_TestCase
 
     public function testMockResponse()
     {
-        $response = $this->parseRaml('mock_response.raml')[0]->getActions()[0]->getResponse();
+        $response = $this->parseRaml('mock_response.raml')[0]->getActions()[0]->getResponses()[0];
         $this->assertEquals(200, $response->getCode());
-        $this->assertEquals('application/json', $response->getContentType());
+        $this->assertEquals('application/json', $response->getContents()[0]->getType());
     }
 
     public function testResponseHeaders()
     {
-        $headers = $this->parseRaml('response_headers.raml')[0]->getActions()[0]->getResponse()->getHeaders();
+        $headers = $this->parseRaml('response_headers.raml')[0]->getActions()[0]->getResponses()[0]->getHeaders();
         $this->assertArrayNotHasKey('Foo', $headers);
         $this->assertArrayHasKey('Bar', $headers);
         $this->assertArrayHasKey('FooBar', $headers);
         $this->assertEquals('Foo', $headers['Bar']);
         $this->assertEmpty($headers['FooBar']);
+    }
 
-        (new \Creads\Api2Symfony\Dumper\SymfonyDumper())->dump($this->parseRaml('response_headers.raml')[0], __DIR__);
+    public function testMultipleResponseCode()
+    {
+        $responses = $this->parseRaml('multiple_response.raml')[0]->getActions()[0]->getResponses();
+        $this->assertCount(4, $responses);
+    }
+
+    public function testMultipleResponseContentType()
+    {
+        self::$converter = new RamlConverter(array('allowed_response_types' => array(
+            'application/json',
+            'application/xml'
+        )));
+        $contents = $this->parseRaml('multiple_response_content_type.raml')[0]->getActions()[0]->getResponses()[0]->getContents();
+        $this->assertCount(2, $contents);
     }
 }

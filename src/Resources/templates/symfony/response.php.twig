@@ -1,15 +1,42 @@
-return new Response(
-            '{{ response.content|raw }}',
-            {{ response.code }},
-            array(
-                {% include 'key_value.php.twig' with { 'key' : 'Content-Type', 'value' : response.contentType } %}
+{% autoescape false %}
+            /* You can provide a _content_type query parameter to get whatever response content type you want */
+{% for content in response.contents %}
+            if ('{{ content.type }}' == $this->get('request')->query->get('_content_type', null)) {
+                return new Response(
+                    '{{ content.content|raw }}',
+                    {{ response.code }},
+                    array(
+                        {% include 'key_value.php.twig' with { 'key' : 'Content-Type', 'value' : content.type } %}{{ ',' }}
+{% for key, value in response.headers %}
+                        {% include 'key_value.php.twig' with { 'key' : key, 'value' : value } %}{% if loop.last == false %},{% endif %}
 
-            ),
-            array(
-                {% for key, value in response.headers %}
-                {%- include 'key_value.php.twig' with { 'key' : key, 'value' : value } %}{% if loop.last == false %},{% endif %}
+{% endfor %}
+                    )
+                );
+            }
+{% endfor %}
+{% if response.contents is empty %}
+            return new Response(
+                '',
+                {{ response.code }},
+                array(
+{% for key, value in response.headers %}
+                    {% include 'key_value.php.twig' with { 'key' : key, 'value' : value } %}{% if loop.last == false %},{% endif %}
 
-                {% endfor %}
+{% endfor %}
+                )
+            );
+{% else %}
+            return new Response(
+                '{{ response.contents[0].content|raw }}',
+                {{ response.code }},
+                array(
+                    {% include 'key_value.php.twig' with { 'key' : 'Content-Type', 'value' : response.contents[0].type } %}{{ ',' }}
+{% for key, value in response.headers %}
+                    {% include 'key_value.php.twig' with { 'key' : key, 'value' : value } %}{% if loop.last == false %},{% endif %}
 
-            )
-        );
+{% endfor %}
+                )
+            );
+{% endif %}
+{% endautoescape %}

@@ -1,0 +1,25 @@
+#%RAML 0.8
+title: multiple response content type
+
+/posts:
+  /{id}:
+    displayName: Post
+    put:
+      responses:
+        403:
+          description: Your are not authorized to update this resource
+          body:
+            application/json:
+              example: |
+                {
+                  "error": {
+                    "code": 403,
+                    "message" : "Your are not authorized to update this resource"
+                  }
+                }
+            application/xml:
+              example: |
+                <error>
+                    <code>403</code>
+                    <message>Your are not authorized to update this resource</message>
+                </error>

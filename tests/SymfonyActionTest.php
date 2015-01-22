@@ -13,7 +13,10 @@ class SymfonyActionTest extends \PHPUnit_Framework_TestCase
 
     protected function getMockedResponse()
     {
-        return $this->getMock('Creads\Api2Symfony\SymfonyResponse', array(), array('/route_path', 'route_name', 'application\json'));
+        $mock = $this->getMock('Creads\Api2Symfony\SymfonyResponse', array(), array(200));
+        $mock->method('getCode')->willReturn(200);
+
+        return $mock;
     }
 
     public function testConstruct()
@@ -49,9 +52,9 @@ class SymfonyActionTest extends \PHPUnit_Framework_TestCase
         $route = $this->getMockedRoute();
         $action = new SymfonyAction('myname', $route, 'get', 'my description');
         $response = $this->getMockedResponse();
-        $action->setResponse($response);
+        $action->addResponse($response);
 
-        $this->assertSame($response, $action->getResponse());
+        $this->assertSame($response, $action->getResponses()[0]);
     }
 
     /**

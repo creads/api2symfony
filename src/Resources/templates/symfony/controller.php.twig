@@ -1,8 +1,10 @@
+{% autoescape false %}
 <?php
 
 namespace {{ controller.namespace }};
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -14,8 +16,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
  */
 class {{ controller.name }} extends Controller
 {
-    {%- for action in controller.actions %}
-    {%- include 'action.php.twig' with { 'action' : action } %}
-
-    {%- endfor %}
+{% for action in controller.actions %}
+{% include 'action.php.twig' with { 'action' : action } %}
+{% endfor %}
 }
+{% endautoescape %}
