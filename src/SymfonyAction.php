@@ -43,11 +43,11 @@ class SymfonyAction
     private $parameters;
 
     /**
-     * Response
+     * Responses
      *
-     * @var SymfonyResponse
+     * @var array
      */
-    private $response;
+    private $responses;
 
     /**
      * Constructor
@@ -74,6 +74,7 @@ class SymfonyAction
         $this->method = $method;
         $this->description = $description;
         $this->parameters = array();
+        $this->responses = array();
     }
 
     /**
@@ -154,25 +155,24 @@ class SymfonyAction
     }
 
     /**
-     * Sets response
-     *
+     * Add response
      * @param SymfonyResponse $response
-     * @return SymfonyAction Fluent interface
+     * @return  SymfonyAction Fluent interface
      */
-    public function setResponse(SymfonyResponse $response)
+    public function addResponse(SymfonyResponse $response)
     {
-        $this->response = $response;
+        $this->responses[] = $response;
 
         return $this;
     }
 
     /**
-     * Gets response
+     * Gets responses
      *
-     * @return SymfonyResponse
+     * @return array
      */
-    public function getResponse()
+    public function getResponses()
     {
-        return $this->response;
+        return $this->responses;
     }
 }

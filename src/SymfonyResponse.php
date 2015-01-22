@@ -15,20 +15,6 @@ class SymfonyResponse
     private $code;
 
     /**
-     * Content
-     *
-     * @var string
-     */
-    private $content;
-
-    /**
-     * Content type
-     *
-     * @var string
-     */
-    private $contentType;
-
-    /**
      * Headers
      *
      * @var array
@@ -36,17 +22,21 @@ class SymfonyResponse
     private $headers;
 
     /**
+     * Contents
+     *
+     * @var array
+     */
+    private $contents;
+
+    /**
      * Constructor
      *
      * @param integer   $code           HTTP Code
-     * @param string    $content        HTTP response content
-     * @param string    $contentType    HTTP response content type
+     * @param array header
      */
-    public function __construct($code, $content, $contentType, array $headers = array())
+    public function __construct($code, array $headers = array())
     {
         $this->code         = $code;
-        $this->content      = $content;
-        $this->contentType  = $contentType;
         $this->headers      = $headers;
     }
 
@@ -61,26 +51,6 @@ class SymfonyResponse
     }
 
     /**
-     * Gets content
-     *
-     * @return string
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * Gets content type
-     *
-     * @return string
-     */
-    public function getContentType()
-    {
-        return $this->contentType;
-    }
-
-    /**
      * Get headers
      *
      * @return array
@@ -88,5 +58,28 @@ class SymfonyResponse
     public function getHeaders()
     {
         return $this->headers;
+    }
+
+    /**
+     * Add content
+     *
+     * @param SymfonyResponseContent $content
+     * @return  self
+     */
+    public function addContent(SymfonyResponseContent $content)
+    {
+        $this->contents[] = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get contents
+     *
+     * @return array
+     */
+    public function getContents()
+    {
+        return $this->contents;
     }
 }
