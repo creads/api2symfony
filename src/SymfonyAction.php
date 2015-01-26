@@ -72,7 +72,7 @@ class SymfonyAction
         $this->name = $name;
         $this->route = $route;
         $this->method = $method;
-        $this->description = $description;
+        $this->description = str_replace(array("\r\n", "\n", "\r", "\t", "  "), '', $description);
         $this->parameters = array();
         $this->responses = array();
     }
