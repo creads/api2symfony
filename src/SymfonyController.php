@@ -51,7 +51,7 @@ class SymfonyController
 
         $this->namespace = $namespace;
         $this->name = $name;
-        $this->description = $description;
+        $this->description = str_replace(array("\r\n", "\n", "\r", "\t", "  "), '', $description);
         $this->actions = array();
     }
 
