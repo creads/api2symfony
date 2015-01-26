@@ -43,7 +43,8 @@ class RamlConverter implements ConverterInterface
         $this->parser = new Parser();
 
         $this->config = array(
-            'allowed_response_types' => array('application/json')
+            'allowed_response_types' => array('application/json'),
+            'version_in_namespace' => false
         );
 
         $this->config = array_merge($this->config, $config);
@@ -107,8 +108,12 @@ class RamlConverter implements ConverterInterface
      */
     protected function buildNamespace(ApiDefinition $definition, $namespace)
     {
-        if ($definition->getVersion()) {
-            $namespace .= '\\' . preg_replace('/[^a-zA-Z0-9]/', '_', $definition->getVersion());
+        if ($this->config['version_in_namespace'] && $definition->getVersion()) {
+            $namespace .= '\\' . preg_replace(
+                array('/(^[0-9])/', '/[^a-zA-Z0-9]/'),
+                array('Version\1', '_'),
+                $definition->getVersion()
+            );
         }
 
         return $namespace;
