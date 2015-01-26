@@ -36,7 +36,11 @@ class RamlConverterTest extends \PHPUnit_Framework_TestCase
 
     public function testNamespaceWithVersion()
     {
-        $this->assertEquals('Foo\\Bar\\1_0_0_alpha_1', $this->parseRaml('namespace_version.raml')[0]->getNamespace());
+        $this->assertEquals('Foo\\Bar', $this->parseRaml('namespace_version.raml')[0]->getNamespace());
+
+        self::$converter = new RamlConverter(array('version_in_namespace' => true));
+
+        $this->assertEquals('Foo\\Bar\\Version1_0_0_alpha_1', $this->parseRaml('namespace_version.raml')[0]->getNamespace());
     }
 
     public function testMultipleResource()
