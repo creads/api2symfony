@@ -76,6 +76,16 @@ class SymfonyController
     }
 
     /**
+     * Gets full class name
+     *
+     * @return string
+     */
+    public function getClassName()
+    {
+        return $this->namespace . '\\' . $this->name;
+    }
+
+    /**
      * Gets description
      *
      * @return string
