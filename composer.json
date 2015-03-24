@@ -20,7 +20,7 @@
         }
     ],
     "require": {
-        "alecsammon/php-raml-parser": "*@dev",
+        "alecsammon/php-raml-parser": "dev-master",
         "symfony/twig-bundle": "~2.6",
         "symfony/filesystem": "~2.6"
     },
