@@ -5,7 +5,7 @@
      * @Route("{{ action.route.path }}", name="{{ action.route.name }}")
      * @Method({"{{ action.method }}"})
      */
-    public function {{ action.name }}(Request $request, {% for parameter in action.parameters %}${{ parameter }}{% if loop.last == false %}, {% endif %}{% endfor %})
+    public function {{ action.name }}(Request $request{% for parameter in action.parameters %}, ${{ parameter }}{% endfor %})
     {
         /* You can provide a _code query parameter to get whatever response code you want */
 {% for response in action.responses %}
