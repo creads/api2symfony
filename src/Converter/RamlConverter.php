@@ -61,7 +61,7 @@ class RamlConverter implements ConverterInterface
     {
         $actions = array();
 
-        $chainName = $chainName . '_' . strtolower($resource->getDisplayName());
+        $chainName = $chainName . '_' . strtolower(str_replace(array('{', '}'), '', $resource->getDisplayName()));
 
         foreach ($resource->getMethods() as $method) {
             $actionName = strtolower($method->getType()) . str_replace(' ', '', ucwords(str_replace('_', ' ', $chainName))) . 'Action';
